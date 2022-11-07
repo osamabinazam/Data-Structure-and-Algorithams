@@ -7,7 +7,9 @@ import java.util.*;
 public class Recursion_Fibonacci{
     public static void main (String [] args){
         
-        fibonacciSeries(6);
+        for(int i=0; i<=15; i++){
+            System.out.print(fibonacciSeries(i) + " " );
+        }
         
     }
 
