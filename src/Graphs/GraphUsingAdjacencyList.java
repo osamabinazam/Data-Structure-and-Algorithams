@@ -6,20 +6,19 @@ import java.util.Stack;
 public class GraphUsingAdjacencyList {
 
     //Class Members
-    ArrayList<GraphNode> orgList = new ArrayList<>();
-    ArrayList<GraphNode> list = (ArrayList<GraphNode>) orgList.clone();
+    ArrayList<GraphNode> list;
     
     
 
     //Constructor
      GraphUsingAdjacencyList(ArrayList<GraphNode> list){
-        this.orgList=list;
+        this.list=list;
      }
     
     //Method that build Undirected Graph
     public void addUndirectedGraph(int i , int j){
-        GraphNode first = orgList.get(i);
-        GraphNode second = orgList.get(j);
+        GraphNode first = list.get(i);
+        GraphNode second = list.get(j);
         first.neighbors.add(second);
         second.neighbors.add(first); 
     } 
@@ -52,7 +51,7 @@ public class GraphUsingAdjacencyList {
             if(!graphNode.isVisited)
                     visitedBFS(graphNode);
         }
-         list = (ArrayList<GraphNode>) orgList.clone();
+
     }
 
 
@@ -83,7 +82,7 @@ public class GraphUsingAdjacencyList {
                 if(!graphNode.isVisited)
                         visitedDFS(graphNode);
         }
-        list = (ArrayList<GraphNode>) orgList.clone();
+
     }
 
 
@@ -92,13 +91,13 @@ public class GraphUsingAdjacencyList {
     public String toString(){
         StringBuilder str = new StringBuilder();
         for (int i = 0; i < list.size(); i++) {
-            str.append(orgList.get(i).name +": ");
+            str.append(list.get(i).name +": ");
             for (int j = 0; j < list.get(i).neighbors.size(); j++) {
-                if (j == orgList.get(i).neighbors.size() -1 ){
-                    str.append(orgList.get(i).neighbors.get(j).name);
+                if (j == list.get(i).neighbors.size() -1 ){
+                    str.append(list.get(i).neighbors.get(j).name);
                 }
                 else{
-                    str.append(orgList.get(i).neighbors.get(j).name + "->");
+                    str.append(list.get(i).neighbors.get(j).name + "->");
                 }
             }
 
