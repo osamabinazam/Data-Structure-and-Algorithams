@@ -1,6 +1,6 @@
 package Graphs;
 
-import java.util.ArrayList;
+import java.util.*;
 
 public class GraphDemo {
     //Class Members
@@ -20,6 +20,31 @@ public class GraphDemo {
         adjacencyMatrix[i][j] = 1;          //link/edge between i and j
         adjacencyMatrix[j][i] = 1;          //link/edge between j and i
     }
+    /********************************************************************/
+    //Implementing Breadth First Search
+    /*******************************************************************/
+
+    //Helper Methods
+    //1. Getting Neighbors
+    public ArrayList<GraphNode> getNeighbors (GraphNode node){
+        ArrayList<GraphNode> neighbors = new ArrayList<>();
+        int nodeIndex = node.index;
+        for (int i = 0; i < adjacencyMatrix.length; i++) {
+            if (adjacencyMatrix[nodeIndex][i] == 1)
+                    neighbors.add(list.get(nodeIndex));
+        }
+        return neighbors;    
+    }
+
+    //2. Internal Function of Actual Breadth First Search 
+    private void isVisited (GraphNode node){
+        //Create Queue Using LinkedList
+        LinkedList queue = new LinkedList<>();
+    
+
+
+    }
+
 
     //Overriding toString method to print the graph
     public String toString(){
