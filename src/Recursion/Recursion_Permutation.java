@@ -1,3 +1,5 @@
+package Recursion;
+
 //  Calculating Permutation using Recursion n-> Total Items r -> Items to be select
 import java.util.*;
 public class Recursion_Permutation{

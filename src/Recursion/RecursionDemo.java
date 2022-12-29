@@ -1,3 +1,5 @@
+package Recursion;
+
 // Recursion is a way of solving a problem by having function calling itself again and again
 // Performing the same operation multiple times with different inputs.
 // In every we try smaller inputs to make the problem smaller.

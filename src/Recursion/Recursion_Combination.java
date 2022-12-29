@@ -1,3 +1,5 @@
+package Recursion;
+
 //  Calculating Combination using Recursion n-> Total Items r -> Ways
 import java.util.*;
 public class Recursion_Combination{
