@@ -14,7 +14,7 @@ public class GraphUsingAdjacencyList {
     //Method that build Undirected Graph
     public void addUndirectedGraph(int i , int j){
         GraphNode first = list.get(i);
-        GraphNode second = list.get(i);
+        GraphNode second = list.get(j);
         first.neighbors.add(second);
         second.neighbors.add(first); 
 
