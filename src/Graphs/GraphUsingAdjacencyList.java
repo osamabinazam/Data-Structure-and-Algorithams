@@ -1,5 +1,6 @@
 package Graphs;
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class GraphUsingAdjacencyList {
 
@@ -19,8 +20,36 @@ public class GraphUsingAdjacencyList {
         second.neighbors.add(first); 
 
     } 
+    /*************************************************/
+    /*              Implementing BFS Traversal       */
+    /*************************************************/
 
+    //Helper Method for BFS Original
 
+    //BFS Internal Method
+    private void visitedBFS (GraphNode node){
+         LinkedList<GraphNode> queue = new LinkedList<>();
+         queue.add(node);
+         while(!queue.isEmpty()){
+            GraphNode currentNode = queue.remove(0);
+            currentNode.isVisited=true;
+            System.out.print(currentNode.name + " ");
+            for (GraphNode neighbor : currentNode.neighbors) {
+                if(!neighbor.isVisited){
+                    queue.add(neighbor);
+                    neighbor.isVisited=true;
+                }
+            }
+         }
+    }
+
+    //Original method of Breadth First Search
+    public void BFS (){
+        for (GraphNode graphNode : list) {
+            if(!graphNode.isVisited)
+                    visitedBFS(graphNode);
+        }
+    }
 
 
 
@@ -65,6 +94,10 @@ public class GraphUsingAdjacencyList {
 
         //Printing Graph
         System.out.println(graph.toString());
+
+        //BFS Traversal
+        System.out.println("Start Traversing");
+        graph.BFS();
 
     }
     
