@@ -52,7 +52,7 @@ public class GraphUsingAdjacencyList {
             if(!graphNode.isVisited)
                     visitedBFS(graphNode);
         }
-        
+         list = (ArrayList<GraphNode>) orgList.clone();
     }
 
 
@@ -82,8 +82,8 @@ public class GraphUsingAdjacencyList {
         for (GraphNode graphNode : list) {
                 if(!graphNode.isVisited)
                         visitedDFS(graphNode);
-        }      
-        list=orgList;     
+        }
+        list = (ArrayList<GraphNode>) orgList.clone();
     }
 
 
