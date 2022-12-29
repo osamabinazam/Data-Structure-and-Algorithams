@@ -1,18 +1,25 @@
 package Graphs;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
+import java.util.Stack;
 
 public class GraphDemo {
     //Class Members
-    ArrayList<GraphNode> list = new ArrayList<GraphNode>();
+    ArrayList<GraphNode> list;          //Original List of Graph
+    ArrayList<GraphNode> copiedList;    //Copied Orignal list in it so that I can work on it without destroying the original One
     int [][] adjacencyMatrix;
+
 
     //Constructor
     GraphDemo(ArrayList<GraphNode> list){
         this.list=list;
         adjacencyMatrix = new int[this.list.size()][this.list.size()];  //Adjacent Matrix
+        copiedList = copyList(list);
     }
+
 
     //Method which adds the edges to the node
     // i->index of first node
@@ -21,6 +28,8 @@ public class GraphDemo {
         adjacencyMatrix[i][j] = 1;          //link/edge between i and j
         adjacencyMatrix[j][i] = 1;          //link/edge between j and i
     }
+
+
      /********************************************************************/
     //Implementing Breadth First Search
     /*******************************************************************/
@@ -31,11 +40,14 @@ public class GraphDemo {
         ArrayList<GraphNode> neighbors = new ArrayList<>();
         int nodeIndex = node.index;
         for (int i = 0; i < adjacencyMatrix.length; i++) {
-            if (adjacencyMatrix[nodeIndex][i] == 1)
-                    neighbors.add(list.get(nodeIndex));
+            if (adjacencyMatrix[nodeIndex][i] == 1){
+                    neighbors.add(copiedList.get(i));
+            }
         }
         return neighbors;    
     }
+
+
 
     //2. Internal Function of Actual Breadth First Search 
     private void visitedBFS (GraphNode node){
@@ -54,15 +66,75 @@ public class GraphDemo {
                 }
             }
         }
-    } //end of the method
+    } 
+
+
 
     //Original BFS Method that traverse the Graph
     public void BFS (){
-        for (GraphNode node : list){
+        
+        for (GraphNode node : copiedList){
             if (!node.isVisited)
                     visitedBFS(node);
         }
+        copiedList = copyList(list);
     }
+
+
+     /********************************************************************/
+    //Implementing Breadth First Search
+    /*******************************************************************/
+
+
+    //Helper Method
+    private void visitedDFS(GraphNode node){
+        Stack<GraphNode> stack = new Stack<>();
+        stack.push(node);
+        while(!stack.isEmpty()){
+            GraphNode currentNode = stack.pop();
+            currentNode.isVisited = true;
+            System.out.print(currentNode.name+" ");
+            ArrayList<GraphNode> neighbors = getNeighbors(currentNode);
+            for (GraphNode neighbor : neighbors){
+                if (!neighbor.isVisited){
+                    stack.push(neighbor);
+                    neighbor.isVisited=true;
+                }
+            }
+        }
+
+    }
+
+
+    //Driver method of Depth First Search
+    public void DFS (){
+        // ArrayList<GraphNode> copiedList= copyList(list);
+        for (GraphNode node :  copiedList){
+            if (!node.isVisited)
+                visitedDFS(node);
+        }
+    }
+
+
+
+    //****************************************/
+    //*             Extra Functions          */
+    //****************************************/
+    
+    //Coping ArrayList to Another List
+    public ArrayList<GraphNode> copyList (ArrayList <GraphNode> list){
+        ArrayList<GraphNode> copiedList = new ArrayList<>();
+
+        for (int i =0 ; i< list.size();  i++){
+            String name = list.get(i).name;
+            int index = list.get(i).index;
+            GraphNode newNode = new GraphNode(name, index);
+            copiedList.add(newNode);
+        }
+        return copiedList;
+    }
+
+
 
     //Overriding toString method to print the graph
     public String toString(){
@@ -102,10 +174,12 @@ public class GraphDemo {
         
         //Printing the Graph
         System.out.println(graph.toString());
-
         //BFS Traversing
-        System.out.println("Start Traversing\n");
+        System.out.println("Start Traversing");
+        System.out.println("Breadth First Search");
         graph.BFS();
+        System.out.println("\nDepth first Search");
+        graph.DFS();
 
     }
 

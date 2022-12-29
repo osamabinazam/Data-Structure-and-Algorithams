@@ -85,9 +85,20 @@ public class GraphUsingAdjacencyList {
 
     }
 
+    //Coping ArrayList to Another List
+    public ArrayList<GraphNode> copyList (ArrayList <GraphNode> list){
+        ArrayList<GraphNode> copiedList = new ArrayList<>();
 
+        for (int i =0 ; i< list.size();  i++){
+            String name = list.get(i).name;
+            int index = list.get(i).index;
+            GraphNode newNode = new GraphNode(name, index);
+            copiedList.add(newNode);
+        }
+        return copiedList;
+    }
 
-    //Method to print Graph
+    //Overriding toString method to print graph
     public String toString(){
         StringBuilder str = new StringBuilder();
         for (int i = 0; i < list.size(); i++) {
@@ -131,7 +142,7 @@ public class GraphUsingAdjacencyList {
         //BFS Traversal
         System.out.println("Start Traversing");
         System.out.println("Breadth First Search");
-        graph.BFS();
+        // graph.BFS();
 
         System.out.println("\nDepth First Search");
         graph.DFS();
