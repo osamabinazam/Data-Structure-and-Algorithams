@@ -103,6 +103,10 @@ public class GraphDemo {
         //Printing the Graph
         System.out.println(graph.toString());
 
+        //BFS Traversing
+        System.out.println("Start Traversing\n");
+        graph.BFS();
+
     }
 
 }
