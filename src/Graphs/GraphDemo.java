@@ -1,6 +1,6 @@
 package Graphs;
 
-import java.util.ArrayList;
+import java.util.*;
 
 public class GraphDemo {
     //Class Members
@@ -19,6 +19,48 @@ public class GraphDemo {
     public void addUndirectedGraph(int i , int j){
         adjacencyMatrix[i][j] = 1;          //link/edge between i and j
         adjacencyMatrix[j][i] = 1;          //link/edge between j and i
+    }
+    /********************************************************************/
+    //Implementing Breadth First Search
+    /*******************************************************************/
+
+    //Helper Methods
+    //1. Getting Neighbors
+    public ArrayList<GraphNode> getNeighbors (GraphNode node){
+        ArrayList<GraphNode> neighbors = new ArrayList<>();
+        int nodeIndex = node.index;
+        for (int i = 0; i < adjacencyMatrix.length; i++) {
+            if (adjacencyMatrix[nodeIndex][i] == 1)
+                    neighbors.add(list.get(nodeIndex));
+        }
+        return neighbors;    
+    }
+
+    //2. Internal Function of Actual Breadth First Search 
+    private void visitedBFS (GraphNode node){
+        //Create Queue Using LinkedList
+        LinkedList<GraphNode> queue = new LinkedList<>();
+        queue.add(node);                                          //Enqueue arbitrary node
+        while (!queue.isEmpty()){                                 //While queue is not empty
+            GraphNode currentNode = queue.remove(0);        //dequeue an element from the queue
+            currentNode.isVisited = true;                         //Set current node to be visited otherwise loop will run infinitely
+            System.out.print(currentNode.name + " ");            //Print the visited vertex
+            ArrayList<GraphNode> neighbors = getNeighbors(currentNode); //Getting neighbors associated with current node
+            for (GraphNode neighbor : neighbors) {
+                if (!neighbor.isVisited){                               //Checking neighbor to be visited, visited vertex will not add in the queue
+                        queue.add(neighbor);                            //Adding neighbor in the queue for traversal
+                        neighbor.isVisited=true;                        //Setting visited property to true
+                }
+            }
+        }
+    } //end of the method
+
+    //Original BFS Method that traverse the Graph
+    public void BFS (){
+        for (GraphNode node : list){
+            if (!node.isVisited)
+                    visitedBFS(node);
+        }
     }
 
     //Overriding toString method to print the graph
@@ -59,6 +101,10 @@ public class GraphDemo {
         
         //Printing the Graph
         System.out.println(graph.toString());
+
+        //Traversal
+        System.out.println("Start Traversing");
+        graph.BFS();
 
     }
 
