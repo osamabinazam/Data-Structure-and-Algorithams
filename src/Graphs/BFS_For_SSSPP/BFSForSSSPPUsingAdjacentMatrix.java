@@ -1,4 +1,4 @@
-package Graphs;
+package Graphs.BFS_For_SSSPP;
 import java.util.*;
 public class BFSForSSSPPUsingAdjacentMatrix {
     ArrayList<Vertex> nodes;          //Original List of Graph
@@ -40,6 +40,7 @@ public class BFSForSSSPPUsingAdjacentMatrix {
         }
         System.out.print(vertex.getName() +" ");
     }
+
 
     //Drriver method 
     public void bfsForSSSPP (Vertex vertex){

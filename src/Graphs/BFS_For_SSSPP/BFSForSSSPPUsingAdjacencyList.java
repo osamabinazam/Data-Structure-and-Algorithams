@@ -1,4 +1,4 @@
-package Graphs;
+package Graphs.BFS_For_SSSPP;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
