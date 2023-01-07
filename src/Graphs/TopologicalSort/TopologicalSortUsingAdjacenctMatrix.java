@@ -1,7 +1,9 @@
-package Graphs;
+package Graphs.TopologicalSort;
 
 import java.util.ArrayList;
 import java.util.Stack;
+
+import Graphs.GraphNode;
 
 public class TopologicalSortUsingAdjacenctMatrix {
 
