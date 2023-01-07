@@ -1,4 +1,4 @@
-package Graphs;
+package Graphs.Traversing;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -6,7 +6,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Stack;
 
-public class GraphDemo {
+public class GraphUsingAdjacencyMatrix {
     //Class Members
     ArrayList<GraphNode> list;          //Original List of Graph
     ArrayList<GraphNode> copiedList;    //Copied Orignal list in it so that I can work on it without destroying the original One
@@ -14,7 +14,7 @@ public class GraphDemo {
 
 
     //Constructor
-    GraphDemo(ArrayList<GraphNode> list){
+    GraphUsingAdjacencyMatrix(ArrayList<GraphNode> list){
         this.list=list;
         adjacencyMatrix = new int[this.list.size()][this.list.size()];  //Adjacent Matrix
         copiedList = copyList(list);
@@ -164,7 +164,7 @@ public class GraphDemo {
         nodeList.add(new GraphNode("D", 3));
         nodeList.add(new GraphNode("E", 4));
         
-        GraphDemo graph = new GraphDemo(nodeList);
+        GraphUsingAdjacencyMatrix graph = new GraphUsingAdjacencyMatrix(nodeList);
         graph.addUndirectedGraph(0, 1);             //link from A to B and B to A
         graph.addUndirectedGraph(0, 2);             //link from A to C and C to A
         graph.addUndirectedGraph(0, 3);             //lint from A to D and D to A

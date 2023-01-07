@@ -1,4 +1,4 @@
-package Graphs;
+package Graphs.Traversing;
 
 import java.util.ArrayList;
 
@@ -14,7 +14,7 @@ public class GraphNode {
     //Property Used to Keep Track of Search
     public boolean isVisited;
 
-    GraphNode(String name, int index){
+    public GraphNode(String name, int index){
         this.name = name;
         this.index=index;
         this.isVisited=false;
