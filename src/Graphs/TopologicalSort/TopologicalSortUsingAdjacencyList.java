@@ -3,7 +3,7 @@ package Graphs.TopologicalSort;
 import java.util.ArrayList;
 import java.util.Stack;
 
-import Graphs.GraphNode;
+import Graphs.Traversing.GraphNode;
 
 public class TopologicalSortUsingAdjacencyList {
 
