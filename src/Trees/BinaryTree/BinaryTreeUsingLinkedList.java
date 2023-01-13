@@ -12,6 +12,48 @@ public class BinaryTreeUsingLinkedList {
         this.root=null;
     }
 
+    //Pre-Order Traversal
+    public void preOrderTraversal(Node rootNode){
+
+        //Base condition 
+        //Stop recursion 
+        if (rootNode == null)
+                return;
+        System.out.print(rootNode.data+" ");
+        preOrderTraversal(rootNode.leftChild);
+        preOrderTraversal(rootNode.rightChild);
+
+    }
+
+    //In-Order Traversal
+    public void inOrderTraversal (Node rootNode){
+        
+        //Base  Condition
+        if (rootNode==null)
+                return;
+        
+        inOrderTraversal(rootNode.leftChild);
+        System.out.print(rootNode.data+"");
+        inOrderTraversal(rootNode.rightChild);
+        
+    }
+
+    //Post-Order Traversal
+    public void postOrderTraversal(Node rootNode){
+
+        //Base condition
+        if (rootNode == null)
+            return;
+        postOrderTraversal(rootNode.leftChild);
+        postOrderTraversal(rootNode.rightChild);
+        System.out.print( rootNode.data+"");
+
+    }
+
+
+
+
+
     //Check root node
     public boolean  isEmpty(){
         return root ==null;
@@ -61,6 +103,12 @@ public class BinaryTreeUsingLinkedList {
         binaryTree.add("Tea");
         binaryTree.add("Wine");
         binaryTree.add("Bear");
+        System.out.println("Pre-Order Traversal : ");
+        binaryTree.preOrderTraversal(binaryTree.root);
+        System.out.println("\nIn Order Traversal : ");
+        binaryTree.inOrderTraversal(binaryTree.root);
+        System.out.println("\nPost Order Traversal : ");
+        binaryTree.postOrderTraversal(binaryTree.root);
     }
     
 }
