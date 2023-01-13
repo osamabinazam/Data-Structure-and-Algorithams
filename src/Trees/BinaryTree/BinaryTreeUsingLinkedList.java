@@ -46,7 +46,22 @@ public class BinaryTreeUsingLinkedList {
             return;
         postOrderTraversal(rootNode.leftChild);
         postOrderTraversal(rootNode.rightChild);
-        System.out.print( rootNode.data+"");
+        System.out.print( rootNode.data+" ");
+
+    }
+
+    //Level Order Traversal
+    public void levelOrderTraversal (Node rootNode){
+        Queue<Node> treeNodes = new LinkedList<>();
+        treeNodes.add(rootNode);
+        while(!treeNodes.isEmpty()){
+            Node currentNode = treeNodes.remove();
+            System.out.print(currentNode.data+" ");
+            if (currentNode.leftChild !=  null)
+                treeNodes.add(currentNode.leftChild);
+            if (currentNode.rightChild != null)
+                treeNodes.add(currentNode.rightChild);
+        }
 
     }
 
@@ -103,12 +118,14 @@ public class BinaryTreeUsingLinkedList {
         binaryTree.add("Tea");
         binaryTree.add("Wine");
         binaryTree.add("Bear");
-        System.out.println("Pre-Order Traversal : ");
+        System.out.println("\nPre-Order Traversal : ");
         binaryTree.preOrderTraversal(binaryTree.root);
-        System.out.println("\nIn Order Traversal : ");
+        System.out.println("\n\nIn Order Traversal : ");
         binaryTree.inOrderTraversal(binaryTree.root);
-        System.out.println("\nPost Order Traversal : ");
+        System.out.println("\n\nPost Order Traversal : ");
         binaryTree.postOrderTraversal(binaryTree.root);
+        System.out.println("\n\nLevel Order Traversal :");
+        binaryTree.levelOrderTraversal(binaryTree.root);
     }
     
 }
