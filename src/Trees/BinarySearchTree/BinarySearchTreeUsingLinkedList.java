@@ -4,6 +4,8 @@ import java.util.Currency;
 import java.util.LinkedList;
 import java.util.Queue;
 
+import javax.xml.crypto.Data;
+
 public class BinarySearchTreeUsingLinkedList {
 
     Node rootNode;
@@ -119,10 +121,83 @@ public class BinarySearchTreeUsingLinkedList {
             if (currentNode.rightNode != null)
                 treeNodes.add(currentNode.rightNode);
         }
+    }
+
+    //Searching in bst
+    public boolean search (Node rootNode, int data){
+
+        if(rootNode ==null){
+            System.out.println("Tree is Empty");
+            return false;
+        }
+        else if (rootNode.data == data){
+            // System.out.println("Value found in bst");
+            return true;
+        }
+        else if (data < rootNode.data)
+            return search(rootNode.leftNode, data);
+        else 
+            return search(rootNode.rightNode, data);
+
 
     }
 
+    //Deletion in BST 
+    //Three Cases:
+    //  1 -> Node to be deleted is a leaf node
+    //  2 -> Node has one child
+    //  3 -> Node has two children
+
+    //Find the minumun Node
+    public Node minmumNode(Node rootNode){
+        return rootNode.leftNode==null ? rootNode : minmumNode(rootNode.leftNode);
+    }
     
+    //Find Successor in the right subtree
+
+    //find and delete node from the BST
+    public Node delete(Node rootNode, int data){
+        if (rootNode == null)
+            return null;
+        else if (data < rootNode.data) 
+            rootNode.leftNode = delete(rootNode.leftNode, data);
+        else if (data > rootNode.data)
+            rootNode.rightNode= delete(rootNode.rightNode, data);
+        //Implementing logic of above 3 cases
+        //case 3
+        else {
+            if (rootNode.leftNode !=null && rootNode.rightNode != null){
+                //Finding Successor of rootNode
+                Node tempNode = rootNode;
+                Node succssorNode = minmumNode(tempNode.rightNode);
+                rootNode.data = succssorNode.data;                  //Replace with successor node
+
+                //Deleting minmum node from Right Subtree of rootNode
+                rootNode.rightNode = delete(rootNode.rightNode, succssorNode.data);
+            
+            }
+
+            //Case 2
+            //For Left Child Only
+            else if (rootNode.leftNode !=null){
+                rootNode= rootNode.leftNode;
+            }
+            //for right Child only
+            else if (rootNode.rightNode !=null)
+                rootNode = rootNode.rightNode;
+            
+            //case 1
+            else
+                rootNode=null;
+
+        }
+
+        return rootNode;
+
+    }
+
+
+
     public static void main(String[] args) {
         BinarySearchTreeUsingLinkedList bt = new BinarySearchTreeUsingLinkedList();
         bt.insert(50);
@@ -142,6 +217,15 @@ public class BinarySearchTreeUsingLinkedList {
         bt.inOrderTraversal(bt.rootNode);
         System.out.print("\nPost-Order  : ");
         bt.postOrderTraversal(bt.rootNode);
+
+        System.out.println("\nSearching in BST \n");
+        System.out.println("Searching 25 : " + bt.search(bt.rootNode, 25));
+
+        System.out.println("Deleting a node\n");
+        System.out.println("Deleting 60  :"+bt.delete(bt.rootNode, 60).data);
+
+        System.out.print("\nPost-Order  : ");
+        bt.levelOrderTraversal(bt.rootNode);
 
 
     }
