@@ -13,6 +13,11 @@ public class BinaryTreeUsingArray {
         return this.treeArray.length == this.top ? true:false;
     }
 
+    //check for empty array
+    public boolean isEmpty(){
+        return top==0 ?true:false;
+    }
+    
     //Insert an element to array
     public void insert(String data){
         if (!isFull()){
@@ -85,6 +90,26 @@ public class BinaryTreeUsingArray {
 
     }
 
+    //Delete specified node from the tree
+    public boolean deleteNode(String key){
+        if(isEmpty()){
+            System.out.println("Tree is empty.");
+            return false;
+        }
+        for(int i=1; i<=top; i++){
+            if(treeArray[i].equals(key)){
+                System.out.println("Value found at location " + i +" now replacing with deepest node");
+                treeArray[i] = treeArray[top];
+                top--;
+                return true;
+            }
+        }
+        System.out.println("Value does not exits in binary tree");
+        return false;
+
+
+    }
+    
     //Driver Method or Main Method of the tree
     public static void main(String[] args) {
         BinaryTreeUsingArray tree = new BinaryTreeUsingArray(10);
@@ -105,6 +130,8 @@ public class BinaryTreeUsingArray {
         tree.levelOrderTraversal();
         System.out.println("Searching for Cold : ");
         tree.search("Cold");
+        System.out.println("Deleting Cold : " + tree.deleteNode("Cold"));
+        tree.levelOrderTraversal();
 
 
     }
